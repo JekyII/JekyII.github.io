@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "slug": "2025-11-09-integrating-google-forms-backend",
+      "title": "Integrating Google Forms as a Backend: Lessons from Server Restrictions",
+      "date": "2025-11-09",
+      "url": "blog/2025-11-09-integrating-google-forms-backend.html",
+      "excerpt": "What started as a simple reCAPTCHA integration evolved into a complete pivot to external services when faced with restrictive server environments. Here's what happened and what I learned.",
+      "thumbnail": "assets/blog/blog3.png",
+      "readingTime": "8 min read",
+      "category": "web-development"
+    },
+    {
+      "slug": "2025-10-30-automation-and-safety-loops",
+      "title": "Automation and safety loops in solo projects",
+      "date": "2025-10-30",
+      "url": "blog/2025-10-30-automation-and-safety-loops.html",
+      "excerpt": "A look at how small defensive layers like reCAPTCHA shape the broader automation strategy for solo projects, balancing speed with reliability.",
+      "thumbnail": "assets/blog/blog3.png",
+      "readingTime": "6 min read",
+      "category": "security"
+    },
+    {
+      "slug": "2025-10-27-lessons-in-product",
+      "title": "Lessons in building products: small bets, fast feedback",
+      "date": "2025-10-27",
+      "url": "blog/2025-10-27-lessons-in-product.html",
+      "excerpt": "This short essay covers product lessons I've learned while shipping small projects: ship small, get feedback, iterate.",
+      "thumbnail": "assets/blog/blog3.png",
+      "readingTime": "5 min read",
+      "category": "product-management"
+    }
+  ]
+}

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyOSINT Toolkit — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .tech-badge {
+        display: inline-block;
+        padding: 0.375rem 0.75rem;
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        border-radius: 0.375rem;
+        color: #38bdf8;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin: 0.25rem;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .feature-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(56, 189, 248, 0.3);
+      }
+      .feature-icon {
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="max-w-4xl mx-auto">
+              <div class="mb-8">
+                <a href="../projects.html" class="text-primary hover:underline inline-flex items-center gap-2">
+                  <span class="material-symbols-outlined" style="font-size: 1.25rem;">arrow_back</span>
+                  Back to Projects
+                </a>
+              </div>
+
+              <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">PyOSINT Toolkit</h1>
+              
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">OSINT</span>
+                <span class="tech-badge">Reconnaissance</span>
+                <span class="tech-badge">Threat Intel</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Web Scraping</span>
+              </div>
+
+              <div class="prose prose-invert max-w-none">
+                <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                  A comprehensive Python-based Open Source Intelligence (OSINT) framework designed for security researchers, 
+                  penetration testers, and threat intelligence analysts. PyOSINT automates reconnaissance workflows and 
+                  aggregates intelligence from multiple sources.
+                </p>
+
+                <div class="my-8 p-6 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-lg">
+                  <h3 class="text-2xl font-bold text-white mb-4">Project Highlights</h3>
+                  <ul class="space-y-2 text-gray-300">
+                    <li>✅ <strong>50+ Specialized Modules</strong> covering domain recon, email lookup, breach checking, and more</li>
+                    <li>✅ <strong>Dark Web Monitoring</strong> with Tor crawler and marketplace tracking</li>
+                    <li>✅ <strong>Blockchain Analysis</strong> for cryptocurrency transaction tracking</li>
+                    <li>✅ <strong>Malware Analysis</strong> integration with sandbox environments</li>
+                    <li>✅ <strong>Digital Forensics</strong> tools for evidence collection and chain of custody</li>
+                    <li>✅ <strong>Automated Reporting</strong> with JSON/HTML export formats</li>
+                  </ul>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Core Features</h2>
+                
+                <div class="feature-grid">
+                  <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Domain Reconnaissance</h3>
+                    <p class="text-gray-400 text-sm">
+                      DNS enumeration, subdomain discovery, WHOIS lookups, SSL/TLS analysis, and web technology fingerprinting.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Email Intelligence</h3>
+                    <p class="text-gray-400 text-sm">
+                      Email validation, breach checking, social media account discovery, and pattern analysis across data breaches.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Network Scanning</h3>
+                    <p class="text-gray-400 text-sm">
+                      Port scanning, service detection, geolocation mapping, and infrastructure profiling with automated screenshots.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">🕵️</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Username Search</h3>
+                    <p class="text-gray-400 text-sm">
+                      Cross-platform username enumeration across 300+ social networks and online platforms with availability checking.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">🕸️</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Dark Web Monitoring</h3>
+                    <p class="text-gray-400 text-sm">
+                      Tor crawler for .onion sites, forum scraping, marketplace tracking, and paste site monitoring.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">₿</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Blockchain Analysis</h3>
+                    <p class="text-gray-400 text-sm">
+                      Cryptocurrency wallet tracking, transaction analysis, mixer detection, and flow visualization.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">🦠</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Malware Analysis</h3>
+                    <p class="text-gray-400 text-sm">
+                      File hash analysis, sandbox submission, phishing detection, URL reputation checks, and infrastructure mapping.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Digital Forensics</h3>
+                    <p class="text-gray-400 text-sm">
+                      Artifact extraction, timeline building, evidence packaging, and chain of custody management.
+                    </p>
+                  </div>
+
+                  <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Threat Intelligence</h3>
+                    <p class="text-gray-400 text-sm">
+                      IoC aggregation, threat feed integration, APT tracking, and automated intelligence correlation.
+                    </p>
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Technical Architecture</h2>
+                
+                <div class="p-6 bg-gray-900/50 border border-gray-700 rounded-lg mb-8">
+                  <h3 class="text-xl font-bold text-white mb-4">Module Structure</h3>
+                  <ul class="text-gray-300 space-y-2 font-mono text-sm">
+                    <li>📁 <strong>modules/</strong> - Core reconnaissance modules (IP, domain, email, phone)</li>
+                    <li>📁 <strong>modules/darkweb/</strong> - Tor crawler, forum scraper, marketplace tracker</li>
+                    <li>📁 <strong>modules/blockchain/</strong> - Wallet tracker, transaction analyzer, mixer detector</li>
+                    <li>📁 <strong>modules/malware_analysis/</strong> - File analyzer, sandbox submitter, phishing detector</li>
+                    <li>📁 <strong>modules/forensics/</strong> - Evidence packager, timeline builder, artifact extractor</li>
+                    <li>📁 <strong>modules/threat_intel/</strong> - IoC feeds, APT tracking, intelligence aggregation</li>
+                    <li>📁 <strong>modules/profiling/</strong> - Social media profiling and pattern analysis</li>
+                  </ul>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Key Technologies</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">Core Stack</h4>
+                    <ul class="text-gray-400 space-y-1 text-sm">
+                      <li>• Python 3.x with async/await patterns</li>
+                      <li>• Beautiful Soup & Selenium for web scraping</li>
+                      <li>• Requests & aiohttp for HTTP operations</li>
+                      <li>• Docker containerization for deployment</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">Security & Data</h4>
+                    <ul class="text-gray-400 space-y-1 text-sm">
+                      <li>• Tor integration for anonymity</li>
+                      <li>• JSON & CSV data export formats</li>
+                      <li>• Rate limiting & API key management</li>
+                      <li>• Modular plugin architecture</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Use Cases</h2>
+                
+                <div class="space-y-4 mb-8">
+                  <div class="p-4 bg-blue-900/10 border-l-4 border-blue-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🎯 Penetration Testing</h4>
+                    <p class="text-gray-400 text-sm">
+                      Automate the reconnaissance phase of penetration tests with comprehensive target profiling, 
+                      subdomain enumeration, and infrastructure mapping.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-purple-900/10 border-l-4 border-purple-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🔐 Threat Intelligence</h4>
+                    <p class="text-gray-400 text-sm">
+                      Aggregate IoCs from multiple sources, track APT groups, monitor dark web forums, 
+                      and correlate threat actor infrastructure.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-green-900/10 border-l-4 border-green-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🛡️ Digital Forensics</h4>
+                    <p class="text-gray-400 text-sm">
+                      Collect and preserve digital evidence, build investigation timelines, 
+                      and maintain proper chain of custody documentation.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-red-900/10 border-l-4 border-red-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🚨 Incident Response</h4>
+                    <p class="text-gray-400 text-sm">
+                      Rapidly profile threat actors, analyze malware infrastructure, 
+                      and track cryptocurrency transactions during security incidents.
+                    </p>
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Development Insights</h2>
+                
+                <p class="text-gray-300 mb-4">
+                  PyOSINT was developed as a modular, extensible framework to address the growing need for automated 
+                  intelligence gathering in cybersecurity operations. The project emphasizes:
+                </p>
+
+                <ul class="text-gray-300 space-y-2 mb-8 list-disc list-inside">
+                  <li><strong>Modularity:</strong> Each module is independent and can be used standalone or as part of a pipeline</li>
+                  <li><strong>Scalability:</strong> Docker-based deployment supports distributed scanning and analysis</li>
+                  <li><strong>Extensibility:</strong> Plugin architecture allows easy addition of new data sources and techniques</li>
+                  <li><strong>Anonymity:</strong> Built-in Tor support and proxy rotation for operational security</li>
+                  <li><strong>Documentation:</strong> Comprehensive guides, API references, and example workflows</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-4 mt-12">
+                  <a 
+                    href="https://github.com/jekyII/PyOSINT" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="btn btn-primary btn-hover inline-flex items-center gap-2"
+                  >
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.25rem; height: 1.25rem; fill: currentColor;">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                  </a>
+                  <a href="../projects.html" class="btn btn-accent btn-hover">
+                    Back to Projects
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="../js/cyber-background.js"></script>
+    <script src="../js/animation.js"></script>
+    <script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+    <script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lessons in building products: small bets, fast feedback — KACHAN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/style.css">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#003f88", "background-light": "#f5f7f8", "background-dark": "#0f1823", accent: "#374151"}, fontFamily: {display: "Space Grotesk"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+#cyber-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    background-color: #0a0e14;
+    display: block;
+    pointer-events: auto;
+    user-select: none;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+</style>
+</head>
+    <body id="top">
+<canvas id="cyber-canvas"></canvas>
+<div class="content-wrapper">
+
+<div class="relative w-full flex flex-col min-h-screen">
+<div id="global-header"></div>
+
+<main class="flex-1 bg-background-dark/30 backdrop-blur-sm" id="site-main-content">
+<article class="max-w-3xl mx-auto px-6 py-20">
+    <a href="../blog.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-colors mb-8">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span>Back to Blog</span>
+    </a>
+    
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            Lessons in building products: small bets, fast feedback
+        </h1>
+        <div class="flex items-center gap-4 text-gray-400 text-sm">
+            <time datetime="2025-10-27">October 27, 2025</time>
+            <span>•</span>
+            <span>5 min read</span>
+        </div>
+    </header>
+    
+    <div class="prose prose-invert max-w-none">
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+            This short essay covers product lessons I've learned while shipping small projects: ship small, get feedback, iterate.
+        </p>
+        
+        <h2 class="text-2xl font-bold text-white mt-12 mb-6">Key Principles</h2>
+        
+        <p class="text-gray-300 mb-6">
+            In product development, three principles stand out:
+        </p>
+        
+        <div class="bg-gray-800/10 border border-gray-700/50 rounded-lg p-6 mb-8 backdrop-blur-sm">
+            <ol class="space-y-4 text-gray-300 list-decimal list-inside">
+                <li class="text-lg font-medium text-white">Ship a minimal, testable slice quickly.</li>
+                <li class="text-lg font-medium text-white">Talk to real users early and measure what's working.</li>
+                <li class="text-lg font-medium text-white">Iterate on what matters: retention, speed, and clarity.</li>
+            </ol>
+        </div>
+        
+        <p class="text-gray-300 mb-6">
+            I try to blend product thinking with practical engineering to deliver features that actually help people.
+        </p>
+    </div>
+    </article>
+</main>
+
+<div id="global-footer"></div>
+
+</div>
+
+<script src="../js/cyber-background.js"></script>
+<script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+<script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+</body></html>

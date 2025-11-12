@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Computing Simulator — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .tech-badge {
+        display: inline-block;
+        padding: 0.375rem 0.75rem;
+        background: rgba(129, 140, 248, 0.1);
+        border: 1px solid rgba(129, 140, 248, 0.3);
+        border-radius: 0.375rem;
+        color: #818cf8;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin: 0.25rem;
+      }
+      .algorithm-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+      .algorithm-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(129, 140, 248, 0.3);
+      }
+      .code-snippet {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(129, 140, 248, 0.2);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        color: #e2e8f0;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="max-w-4xl mx-auto">
+              <div class="mb-8">
+                <a href="../projects.html" class="text-primary hover:underline inline-flex items-center gap-2">
+                  <span class="material-symbols-outlined" style="font-size: 1.25rem;">arrow_back</span>
+                  Back to Projects
+                </a>
+              </div>
+
+              <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Quantum Computing Simulator</h1>
+              
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Qiskit</span>
+                <span class="tech-badge">NumPy</span>
+                <span class="tech-badge">Matplotlib</span>
+                <span class="tech-badge">Jupyter</span>
+                <span class="tech-badge">Quantum Algorithms</span>
+              </div>
+
+              <div class="prose prose-invert max-w-none">
+                <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                  An educational quantum computing simulator built with Python and Qiskit, designed to demonstrate 
+                  fundamental quantum mechanics principles and famous quantum algorithms through interactive visualizations 
+                  and hands-on experimentation.
+                </p>
+
+                <div class="my-8 p-6 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-500/30 rounded-lg">
+                  <h3 class="text-2xl font-bold text-white mb-4">Project Highlights</h3>
+                  <ul class="space-y-2 text-gray-300">
+                    <li>⚛️ <strong>6 Quantum Algorithms</strong> implemented with full visualization support</li>
+                    <li>📊 <strong>Interactive Dashboard</strong> for running experiments and viewing results</li>
+                    <li>🔬 <strong>Superposition & Entanglement</strong> demonstrations with state vector visualization</li>
+                    <li>🎲 <strong>Quantum Randomness</strong> generator using true quantum properties</li>
+                    <li>🎯 <strong>Grover's Search Algorithm</strong> with complexity analysis</li>
+                    <li>🔍 <strong>Deutsch's Algorithm</strong> for function evaluation</li>
+                  </ul>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Implemented Algorithms</h2>
+                
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>🎲</span> Quantum Random Number Generator
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    Leverages quantum superposition to generate truly random numbers, demonstrating the fundamental 
+                    difference between quantum and classical randomness. Uses Hadamard gates to create equal superposition 
+                    states before measurement.
+                  </p>
+                  <div class="code-snippet">
+                    <span style="color: #818cf8;">def</span> <span style="color: #38bdf8;">quantum_random_bit</span>():<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;qc = QuantumCircuit(<span style="color: #fbbf24;">1</span>, <span style="color: #fbbf24;">1</span>)<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;qc.h(<span style="color: #fbbf24;">0</span>)  <span style="color: #64748b;"># Hadamard gate</span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;qc.measure(<span style="color: #fbbf24;">0</span>, <span style="color: #fbbf24;">0</span>)<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #818cf8;">return</span> result
+                  </div>
+                </div>
+
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>🪙</span> Quantum Coin Flip
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    Simulates a perfectly fair coin flip using quantum mechanics. Demonstrates the probabilistic nature 
+                    of quantum measurements and how superposition collapses to definite states upon observation.
+                  </p>
+                </div>
+
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>📊</span> Quantum Superposition Visualizer
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    Interactive visualization tool showing quantum state evolution through Bloch sphere representations 
+                    and probability amplitude plots. Helps understand how quantum states exist in superposition until measured.
+                  </p>
+                  <ul class="text-gray-400 text-sm space-y-1 ml-4 mt-2">
+                    <li>• Real-time state vector visualization</li>
+                    <li>• Bloch sphere 3D plotting</li>
+                    <li>• Measurement probability distributions</li>
+                    <li>• Gate operation animations</li>
+                  </ul>
+                </div>
+
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>🔗</span> Bell State Entanglement
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    Creates and analyzes quantum entanglement using Bell states (|Φ⁺⟩, |Φ⁻⟩, |Ψ⁺⟩, |Ψ⁻⟩). 
+                    Demonstrates Einstein's "spooky action at a distance" where measuring one qubit instantly 
+                    determines the state of its entangled partner.
+                  </p>
+                  <div class="code-snippet">
+                    <span style="color: #64748b;"># Create Bell State |Φ⁺⟩</span><br/>
+                    qc.h(<span style="color: #fbbf24;">0</span>)  <span style="color: #64748b;"># Superposition</span><br/>
+                    qc.cx(<span style="color: #fbbf24;">0</span>, <span style="color: #fbbf24;">1</span>)  <span style="color: #64748b;"># Entanglement</span><br/>
+                    <span style="color: #64748b;"># Result: (|00⟩ + |11⟩) / √2</span>
+                  </div>
+                </div>
+
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>🔍</span> Deutsch's Algorithm
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    First quantum algorithm to demonstrate quantum advantage over classical computing. Determines whether 
+                    a binary function is constant or balanced with only <strong>one</strong> function evaluation, 
+                    while classical algorithms require two.
+                  </p>
+                  <ul class="text-gray-400 text-sm space-y-1 ml-4 mt-2">
+                    <li>• <strong>Classical complexity:</strong> 2 queries required</li>
+                    <li>• <strong>Quantum complexity:</strong> 1 query (50% reduction)</li>
+                    <li>• Demonstrates quantum parallelism through superposition</li>
+                  </ul>
+                </div>
+
+                <div class="algorithm-card">
+                  <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span>🎯</span> Grover's Search Algorithm
+                  </h3>
+                  <p class="text-gray-400 mb-3">
+                    Quantum search algorithm providing quadratic speedup over classical search. Finds a marked item 
+                    in an unsorted database of N items in O(√N) time compared to classical O(N).
+                  </p>
+                  <ul class="text-gray-400 text-sm space-y-1 ml-4 mt-2">
+                    <li>• <strong>Speedup:</strong> √N for database search</li>
+                    <li>• Uses amplitude amplification technique</li>
+                    <li>• Implements oracle and diffusion operators</li>
+                    <li>• Applications: Database search, cryptanalysis, optimization</li>
+                  </ul>
+                  <div class="code-snippet mt-3">
+                    <span style="color: #64748b;"># Example: Search 16-item database</span><br/>
+                    <span style="color: #64748b;"># Classical: ~8 queries average</span><br/>
+                    <span style="color: #64748b;"># Grover's: ~4 queries (√16)</span><br/>
+                    optimal_iterations = π/4 * √N
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Technical Implementation</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-3">Core Technologies</h4>
+                    <ul class="text-gray-400 space-y-2 text-sm">
+                      <li>• <strong>Qiskit:</strong> IBM's quantum SDK for circuit building</li>
+                      <li>• <strong>NumPy:</strong> Quantum state vector operations</li>
+                      <li>• <strong>Matplotlib:</strong> Circuit & result visualizations</li>
+                      <li>• <strong>Jupyter:</strong> Interactive notebook environment</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-3">Project Structure</h4>
+                    <ul class="text-gray-400 space-y-2 text-sm font-mono" style="font-size: 0.75rem;">
+                      <li>• 01_quantum_random_number_generator.py</li>
+                      <li>• 02_quantum_coin_flip.py</li>
+                      <li>• 03_quantum_superposition_visualizer.py</li>
+                      <li>• 04_bell_state_entanglement.py</li>
+                      <li>• 05_deutsch_algorithm.py</li>
+                      <li>• 06_grover_algorithm.py</li>
+                      <li>• main_dashboard.py</li>
+                      <li>• visualization_interface.py</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Key Features</h2>
+                
+                <div class="space-y-4 mb-8">
+                  <div class="p-4 bg-purple-900/10 border-l-4 border-purple-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">📈 Interactive Dashboard</h4>
+                    <p class="text-gray-400 text-sm">
+                      Centralized control panel for running all quantum experiments with real-time visualization 
+                      of quantum circuits, measurement outcomes, and statistical analysis.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-indigo-900/10 border-l-4 border-indigo-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🔬 State Vector Analysis</h4>
+                    <p class="text-gray-400 text-sm">
+                      Complete quantum state inspection with amplitude and phase visualization, 
+                      showing how quantum information is encoded in complex vector spaces.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-blue-900/10 border-l-4 border-blue-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">📊 Measurement Statistics</h4>
+                    <p class="text-gray-400 text-sm">
+                      Histogram plots of measurement outcomes over multiple shots, demonstrating quantum probability 
+                      distributions and verifying theoretical predictions.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-cyan-900/10 border-l-4 border-cyan-500 rounded-r-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🎓 Educational Focus</h4>
+                    <p class="text-gray-400 text-sm">
+                      Detailed comments, documentation, and step-by-step algorithm breakdowns making quantum 
+                      computing concepts accessible to learners at all levels.
+                    </p>
+                  </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Learning Outcomes</h2>
+                
+                <p class="text-gray-300 mb-4">
+                  This project was built to explore and understand quantum computing fundamentals through practical 
+                  implementation. Key concepts learned include:
+                </p>
+
+                <ul class="text-gray-300 space-y-2 mb-8 list-disc list-inside">
+                  <li><strong>Quantum Superposition:</strong> States existing in multiple configurations simultaneously</li>
+                  <li><strong>Quantum Entanglement:</strong> Non-local correlations between quantum systems</li>
+                  <li><strong>Quantum Measurement:</strong> Wave function collapse and probability interpretation</li>
+                  <li><strong>Quantum Gates:</strong> Unitary operations manipulating quantum states</li>
+                  <li><strong>Quantum Parallelism:</strong> Performing multiple computations simultaneously</li>
+                  <li><strong>Quantum Advantage:</strong> When quantum algorithms outperform classical counterparts</li>
+                </ul>
+
+                <h2 class="text-3xl font-bold text-white mt-12 mb-6">Applications & Extensions</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🔐 Cryptography</h4>
+                    <p class="text-gray-400 text-sm">
+                      Quantum key distribution, quantum-resistant algorithms, and exploring quantum threats to classical encryption
+                    </p>
+                  </div>
+                  
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🧬 Simulation</h4>
+                    <p class="text-gray-400 text-sm">
+                      Molecular modeling, drug discovery, and quantum chemistry simulations impossible on classical computers
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🎯 Optimization</h4>
+                    <p class="text-gray-400 text-sm">
+                      QAOA for combinatorial optimization, portfolio optimization, and supply chain management
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-gray-900/30 border border-gray-700 rounded-lg">
+                    <h4 class="text-lg font-bold text-white mb-2">🤖 Machine Learning</h4>
+                    <p class="text-gray-400 text-sm">
+                      Quantum neural networks, quantum support vector machines, and quantum feature spaces
+                    </p>
+                  </div>
+                </div>
+
+                <div class="my-8 p-6 bg-indigo-900/20 border border-indigo-500/30 rounded-lg">
+                  <h3 class="text-xl font-bold text-white mb-3">🚀 Future Enhancements</h3>
+                  <ul class="text-gray-300 space-y-1">
+                    <li>• Implement Shor's factoring algorithm for RSA cryptanalysis</li>
+                    <li>• Add quantum error correction codes (Surface codes)</li>
+                    <li>• Integrate with IBM Quantum cloud backend</li>
+                    <li>• Build variational quantum eigensolver (VQE)</li>
+                    <li>• Create quantum game theory simulations</li>
+                  </ul>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mt-12">
+                  <a 
+                    href="https://github.com/jekyII/Quantum-Simulator" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="btn btn-primary btn-hover inline-flex items-center gap-2"
+                  >
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.25rem; height: 1.25rem; fill: currentColor;">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                  </a>
+                  <a href="../projects.html" class="btn btn-accent btn-hover">
+                    Back to Projects
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="../js/cyber-background.js"></script>
+    <script src="../js/animation.js"></script>
+    <script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+    <script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+  </body>
+</html>

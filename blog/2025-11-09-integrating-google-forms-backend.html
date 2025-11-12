@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integrating Google Forms as a Backend: Lessons from Server Restrictions — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <article class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="max-w-3xl mx-auto">
+              <header class="mb-12">
+                <div class="mb-4">
+                  <a href="../blog.html" class="text-primary hover:underline">&larr; Back to Blog</a>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                  Integrating Google Forms as a Backend: Lessons from Server Restrictions
+                </h1>
+                <div class="flex items-center gap-4 text-gray-400 text-sm">
+                  <time datetime="2025-11-09">November 9, 2025</time>
+                  <span>•</span>
+                  <span>8 min read</span>
+                  <span>•</span>
+                  <span class="text-primary">Web Development</span>
+                </div>
+              </header>
+
+              <div class="prose prose-invert prose-lg max-w-none">
+                <p class="lead text-xl text-gray-300 mb-8">
+                  Today's development session turned into an unexpected lesson in adaptability. What started as 
+                  a simple reCAPTCHA integration evolved into a complete pivot to external services when faced 
+                  with restrictive server environments. Here's what happened and what I learned.
+                </p>
+
+                <h2>The Original Plan: Secure Form Handling</h2>
+                
+                <p>
+                  The goal was straightforward: add reCAPTCHA v3 to my portfolio website's contact and newsletter 
+                  forms, then implement proper server-side handling with security best practices. I had two forms:
+                </p>
+
+                <ul>
+                  <li><strong>Contact Form:</strong> Name, email, and message submissions</li>
+                  <li><strong>Newsletter Form:</strong> Email subscription collection</li>
+                </ul>
+
+                <p>
+                  The plan included implementing rate limiting, input sanitization, XSS prevention, CSV injection 
+                  protection, and storing submissions in local CSV files. Everything seemed straightforward—until 
+                  it wasn't.
+                </p>
+
+                <h2>The Implementation Journey</h2>
+
+                <h3>Phase 1: reCAPTCHA Integration ✅</h3>
+                
+                <p>
+                  Successfully integrated Google reCAPTCHA v3 (the invisible version) into the contact form. 
+                  Key learning points:
+                </p>
+
+                <ul>
+                  <li><strong>Client-side:</strong> Load reCAPTCHA script with site key, execute on form submission</li>
+                  <li><strong>Server-side:</strong> Verify token with Google's API, check score threshold (0.5)</li>
+                  <li><strong>UX benefit:</strong> No annoying checkboxes—seamless user experience</li>
+                </ul>
+
+                <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4 my-6">
+                  <p class="text-sm text-gray-400 mb-2">JavaScript Implementation:</p>
+                  <pre class="text-sm"><code>const token = await window.grecaptcha.execute(siteKey, { 
+  action: 'submit' 
+});
+formData.append('g-recaptcha-response', token);</code></pre>
+                </div>
+
+                <h3>Phase 2: Security Implementation ✅</h3>
+                
+                <p>
+                  Created a comprehensive security configuration with:
+                </p>
+
+                <ul>
+                  <li><strong>Rate Limiting:</strong> 5 requests per 5 minutes per IP address</li>
+                  <li><strong>Security Headers:</strong> X-Frame-Options, X-XSS-Protection, X-Content-Type-Options</li>
+                  <li><strong>Input Sanitization:</strong> htmlspecialchars(), trim(), pattern validation</li>
+                  <li><strong>CSV Injection Prevention:</strong> Escaping dangerous characters (=, +, -, @)</li>
+                  <li><strong>Structured Logging:</strong> Audit trail for all security events</li>
+                </ul>
+
+                <p>
+                  I organized the project with security in mind:
+                </p>
+
+                <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4 my-6">
+                  <pre class="text-sm"><code>web/
+├── private/              # Outside web root
+│   ├── config/
+│   │   └── config.php   # Credentials & functions
+│   ├── data/            # CSV storage
+│   └── logs/            # Security logs
+└── public_html/         # Web root
+    └── api/
+        ├── submit.php   # Contact handler
+        └── subscribe.php # Newsletter handler</code></pre>
+                </div>
+
+                <h3>Phase 3: The File Permission Wall ❌</h3>
+                
+                <p>
+                  This is where things got interesting (and frustrating). Despite implementing everything correctly, 
+                  I hit a brick wall: <strong>the school server (enos.itcollege.ee) wouldn't allow file writes anywhere</strong>.
+                </p>
+
+                <p>I tried multiple approaches:</p>
+
+                <ol>
+                  <li><strong>Attempt 1:</strong> Write to <code>/tmp/</code> directory → Permission denied</li>
+                  <li><strong>Attempt 2:</strong> Write to <code>public_html/</code> → Permission denied</li>
+                  <li><strong>Attempt 3:</strong> Write to parent directory → Permission denied</li>
+                  <li><strong>Attempt 4:</strong> Try <code>sys_get_temp_dir()</code> → Still denied</li>
+                </ol>
+
+                <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4 my-6">
+                  <p class="text-red-300 font-semibold mb-2">⚠️ The Error Message:</p>
+                  <pre class="text-sm text-red-200"><code>Error: Cannot create subscription file
+Failed to save. Check directory permissions.</code></pre>
+                </div>
+
+                <p>
+                  Multiple debugging iterations revealed that the server had <strong>strict write restrictions</strong> 
+                  in place—likely for security reasons. This is common in shared hosting and educational environments 
+                  where administrators lock down the filesystem to prevent abuse.
+                </p>
+
+                <h2>The Pivot: Google Apps Script Integration</h2>
+
+                <p>
+                  After realizing local file storage wasn't viable, I pivoted to an external solution: 
+                  <strong>Google Apps Script Web Apps</strong>. This approach has several advantages:
+                </p>
+
+                <h3>Why Google Apps Script?</h3>
+
+                <ul>
+                  <li>✅ <strong>No server file writes needed</strong> — data goes to Google Sheets</li>
+                  <li>✅ <strong>Free and reliable</strong> — backed by Google's infrastructure</li>
+                  <li>✅ <strong>Easy to set up</strong> — JavaScript-based, familiar syntax</li>
+                  <li>✅ <strong>Built-in database</strong> — Google Sheets as a simple database</li>
+                  <li>✅ <strong>Automatic backups</strong> — Google Drive handles it</li>
+                  <li>✅ <strong>Email notifications</strong> — MailApp API for alerts</li>
+                </ul>
+
+                <h3>The New Architecture</h3>
+
+                <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4 my-6">
+                  <pre class="text-sm"><code>Browser (Form) 
+  ↓ POST with reCAPTCHA token
+PHP Handler (submit.php)
+  ↓ Verify reCAPTCHA + Sanitize
+  ↓ Rate Limiting
+  ↓ POST to Google Apps Script URL
+Google Apps Script
+  ↓ doPost(e) function
+  ↓ Append to Google Sheet
+Google Sheet (Database)</code></pre>
+                </div>
+
+                <h3>Implementation Details</h3>
+
+                <p>Created two Google Apps Script projects:</p>
+
+                <ol>
+                  <li>
+                    <strong>Contact Form Handler:</strong> Receives name, email, message, timestamp, and IP address. 
+                    Stores in a Google Sheet with columns for each field.
+                  </li>
+                  <li>
+                    <strong>Newsletter Handler:</strong> Receives email addresses, checks for duplicates, 
+                    and stores unique subscriptions.
+                  </li>
+                </ol>
+
+                <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4 my-6">
+                  <p class="text-sm text-gray-400 mb-2">Google Apps Script Example:</p>
+                  <pre class="text-sm"><code>function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var email = e.parameter.email || '';
+  
+  // Check for duplicates
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (data[i][0].toLowerCase() === email.toLowerCase()) {
+      return ContentService.createTextOutput(
+        JSON.stringify({success: false, message: 'Already subscribed'})
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+  
+  sheet.appendRow([email, new Date()]);
+  return ContentService.createTextOutput(
+    JSON.stringify({success: true})
+  ).setMimeType(ContentService.MimeType.JSON);
+}</code></pre>
+                </div>
+
+                <p>
+                  The PHP files were updated to POST data to the Google Apps Script URLs instead of 
+                  writing to local files. All the security measures (reCAPTCHA, rate limiting, sanitization) 
+                  remained in place.
+                </p>
+
+                <h2>Key Learning Points</h2>
+
+                <h3>1. Server Environments Are Unpredictable</h3>
+                
+                <p>
+                  Educational and shared hosting environments often have restrictions you won't encounter in 
+                  development. Always have a fallback strategy. What works on localhost might fail in production.
+                </p>
+
+                <h3>2. External Services Can Be a Feature, Not a Workaround</h3>
+                
+                <p>
+                  Initially, I saw Google Apps Script as a compromise. But it actually provides benefits:
+                </p>
+
+                <ul>
+                  <li>No database setup or management required</li>
+                  <li>Automatic scaling and reliability</li>
+                  <li>Easy data export and visualization in Google Sheets</li>
+                  <li>Built-in notification capabilities</li>
+                </ul>
+
+                <h3>3. Security Layers Still Matter</h3>
+                
+                <p>
+                  Even when using external services, implementing security on your end is crucial:
+                </p>
+
+                <ul>
+                  <li>Rate limiting prevents abuse of <em>your</em> server resources</li>
+                  <li>Input sanitization protects against XSS in error messages</li>
+                  <li>reCAPTCHA verification stops bots before data reaches Google</li>
+                  <li>Logging helps with debugging and security monitoring</li>
+                </ul>
+
+                <h3>4. Debugging Is Iterative</h3>
+                
+                <p>
+                  I went through multiple iterations trying different file paths and permission checks. 
+                  Each failure provided information about what wouldn't work, leading to the eventual solution.
+                </p>
+
+                <h3>5. Documentation Saves Time</h3>
+                
+                <p>
+                  I created two guides during this process:
+                </p>
+
+                <ul>
+                  <li><code>GOOGLE_FORMS_SETUP.md</code> — Complete setup instructions</li>
+                  <li><code>QUICK_SETUP.md</code> — Condensed checklist</li>
+                </ul>
+
+                <p>
+                  Writing these forced me to think through the process clearly and will help if I need 
+                  to set this up again in the future.
+                </p>
+
+                <h2>Where I Got Stuck</h2>
+
+                <h3>Problem 1: File Permissions</h3>
+                
+                <p>
+                  <strong>The Issue:</strong> Every attempt to write files failed, regardless of location.
+                </p>
+
+                <p>
+                  <strong>Time Spent:</strong> ~2 hours trying different approaches
+                </p>
+
+                <p>
+                  <strong>Solution:</strong> Recognized the limitation and pivoted to external storage rather 
+                  than fighting the server configuration.
+                </p>
+
+                <h3>Problem 2: reCAPTCHA v2 vs v3 Confusion</h3>
+                
+                <p>
+                  <strong>The Issue:</strong> Initially got "Invalid key type" errors because I mixed v2 and v3 APIs.
+                </p>
+
+                <p>
+                  <strong>Solution:</strong> Ensured consistency — v3 site key, v3 verification endpoint, 
+                  no visible widget.
+                </p>
+
+                <h3>Problem 3: Config File Security</h3>
+                
+                <p>
+                  <strong>The Issue:</strong> Needed to prevent direct access to config.php while allowing 
+                  PHP includes.
+                </p>
+
+                <p>
+                  <strong>Solution:</strong> Used a defined constant check at the top of config.php:
+                </p>
+
+                <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4 my-6">
+                  <pre class="text-sm"><code>if (!defined('API_ACCESS') || API_ACCESS !== true) {
+    http_response_code(403);
+    die('Access denied');
+}</code></pre>
+                </div>
+
+                <h2>Areas for Future Improvement</h2>
+
+                <ol>
+                  <li>
+                    <strong>Database Integration:</strong> When moving beyond educational hosting, implement 
+                    proper database (MySQL/PostgreSQL) instead of Google Sheets
+                  </li>
+                  <li>
+                    <strong>CSRF Protection:</strong> Add token-based CSRF protection to forms
+                  </li>
+                  <li>
+                    <strong>Email Notifications:</strong> Configure PHPMailer or use Google's MailApp to 
+                    send notifications when forms are submitted
+                  </li>
+                  <li>
+                    <strong>Admin Dashboard:</strong> Create a simple admin panel to view submissions without 
+                    logging into Google Sheets
+                  </li>
+                  <li>
+                    <strong>Testing:</strong> Write automated tests for form validation and security measures
+                  </li>
+                </ol>
+
+                <h2>Final Thoughts</h2>
+
+                <p>
+                  This session was a perfect example of real-world development: plans change, obstacles appear, 
+                  and solutions require creativity. While I didn't end up with the exact implementation I 
+                  originally envisioned, the final solution is arguably better—more maintainable, scalable, 
+                  and appropriate for the hosting environment.
+                </p>
+
+                <p>
+                  The most valuable lesson? <strong>Don't fight the constraints—work with them</strong>. 
+                  Server restrictions aren't always obstacles; sometimes they push you toward better solutions 
+                  you wouldn't have considered otherwise.
+                </p>
+
+                <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 my-8">
+                  <h3 class="text-xl font-bold text-white mb-3">📚 Resources Created</h3>
+                  <ul class="space-y-2 text-gray-300">
+                    <li>✅ reCAPTCHA v3 client & server integration</li>
+                    <li>✅ Secure config structure with rate limiting</li>
+                    <li>✅ Google Apps Script deployment guides</li>
+                    <li>✅ Security documentation (SECURITY_README.md)</li>
+                    <li>✅ Working contact and newsletter forms</li>
+                  </ul>
+                </div>
+
+                <p>
+                  Next steps: Test the Google Forms integration end-to-end, add email notifications, 
+                  and perhaps create a simple dashboard for viewing submissions. But for now, the forms 
+                  are secure, functional, and ready for production.
+                </p>
+
+                <hr class="my-8 border-gray-700" />
+
+                <p class="text-sm text-gray-400">
+                  <strong>Tags:</strong> Web Development, PHP, Security, Google Apps Script, reCAPTCHA, 
+                  Problem Solving, Server Configuration
+                </p>
+              </div>
+
+              <div class="mt-12 pt-8 border-t border-gray-700">
+                <a href="../blog.html" class="text-primary hover:underline">&larr; Back to Blog</a>
+              </div>
+            </div>
+          </article>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="../js/cyber-background.js"></script>
+    <script src="../js/animation.js"></script>
+    <script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+    <script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+  </body>
+</html>

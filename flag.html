@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLAG CAPTURED</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    
+    .terminal {
+      max-width: 800px;
+      padding: 2rem;
+      border: 2px solid #0f0;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+      animation: flicker 0.15s infinite;
+    }
+    
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+    }
+    
+    pre {
+      color: #0f0;
+      font-size: 14px;
+      line-height: 1.4;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    
+    .flag {
+      color: #ff0;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 2rem 0;
+      text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .blink {
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    
+    a {
+      color: #0cf;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <pre>
+╔═══════════════════════════════════════════════════════════════╗
+║                    UNAUTHORIZED ACCESS DETECTED               ║
+║                                                               ║
+║  Intrusion Timestamp: <span id="timestamp"></span>            ║
+║  Source IP: <span id="ip">RETRIEVING...</span>                ║
+</pre>
+<script>
+    // get visitor IP (uses a public service)
+    fetch('https://api.ipify.org?format=json')
+        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(data => document.getElementById('ip').textContent = data.ip)
+        .catch(() => document.getElementById('ip').textContent = 'UNKNOWN');
+</script>
+<pre>
+║  Access Level: <span style="color:#f00;">ROOT</span>        ║
+╚═══════════════════════════════════════════════════════════════╝
+
+[<span style="color:#0cf;">+</span>] Bypassing authentication...
+[<span style="color:#0cf;">+</span>] Escalating privileges...
+[<span style="color:#0cf;">+</span>] Dumping credentials...
+[<span style="color:#f0f;">!</span>] Security logging disabled
+[<span style="color:#0f0;">✓</span>] Full system access granted
+
+═══════════════════════════════════════════════════════════════
+</pre>
+    
+    <div class="flag">
+      FLAG{you_found_the_backdoor_nice_work}
+    </div>
+    
+    <pre>
+Congratulations, you curious soul.
+
+You found the hidden page. Whether you:
+  • Checked robots.txt (smart)
+  • Inspected the source code (classic)
+  • Brute-forced the URL (persistent)
+  • Got tipped off by someone (social engineering)
+
+You're the kind of person who doesn't just click buttons.
+You look under the hood. You test boundaries. You explore.
+
+That's exactly the mindset needed in cybersecurity.
+
+Keep that curiosity sharp. Keep breaking things (ethically).
+Keep building things better.
+
+═══════════════════════════════════════════════════════════════
+
+<span style="color:#0cf;">// KACHAN</span>
+Current Status: <span style="color:#0f0;">OPERATIONAL</span>
+Security Posture: <span style="color:#ff0;">COMPROMISED (BY YOU)</span>
+
+<a href="index.html">[Return to Surface Web]</a>  |  <a href="projects.html">[View Projects]</a>
+
+<span class="blink">_</span>
+</pre>
+  </div>
+  
+  <script>
+    // Display current timestamp
+    document.getElementById('timestamp').textContent = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+    
+    // Console easter egg
+    console.log('%c[SYSTEM BREACH]', 'color: #ff0000; font-size: 20px; font-weight: bold;');
+    console.log('%cYou found the flag! Well done.', 'color: #00ff00; font-size: 14px;');
+    console.log('%cFLAG{you_found_the_backdoor_nice_work}', 'color: #ffff00; font-size: 16px; font-weight: bold;');
+  </script>
+</body>
+</html>

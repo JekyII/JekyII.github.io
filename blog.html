@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .post-card-link {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+      }
+      .post-card-link:focus-visible {
+        outline: 2px solid rgba(56,189,248,0.7);
+        outline-offset: 4px;
+      }
+
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .post-card {
+        background: rgba(255,255,255,0.02);
+        border-radius: 0.75rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+      .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      }
+      .post-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: rgba(255,255,255,0.05);
+      }
+      .post-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex: 1;
+      }
+      .post-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: #fff;
+        line-height: 1.4;
+      }
+      .post-excerpt {
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+      .post-meta {
+        font-size: 0.875rem;
+        color: #64748b;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+              <header class="text-center mb-16">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Cybersecurity Insights</h1>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                  Expert insights on penetration testing, vulnerability assessment, and modern security practices
+                </p>
+              </header>
+
+              <div class="post-grid" data-blog-list data-blog-layout="cards">
+                <article class="post-card">
+                  <div class="post-body">
+                    <p class="post-excerpt">Loading posts…</p>
+                  </div>
+                </article>
+              </div>
+              <noscript>
+                <p class="text-gray-400 mt-4">
+                  Enable JavaScript to see the latest posts, or open
+                  <a class="text-primary" href="blog.html">the blog overview</a>.
+                </p>
+              </noscript>
+            </div>
+            </section>
+            <section class="subscribe-section fade-in-section" id="subscribe">
+              <div class="subscribe-card">
+                <h2 class="text-4xl font-bold">Join the weekly signal</h2>
+                <p>One actionable security briefing every Thursday.</p>
+                <form action="#" method="post" class="subscribe-form" aria-label="Newsletter subscription">
+                  <label class="sr-only" for="subscribe-email">Email address</label>
+                  <input class="form-input" type="email" id="subscribe-email" name="email" placeholder="you@example.com" autocomplete="email" required />
+                  <button type="submit" class="btn btn-primary btn-hover">Subscribe</button>
+                </form>
+              </div>
+            </section>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+  <script src="js/cyber-background.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/blog-list.js" defer></script>
+  <script src="js/header.js" data-header-src="header.html" data-path-depth="0" defer></script>
+  <script src="js/footer.js" data-footer-src="footer.html" data-path-depth="0" defer></script>
+  <script>
+    // Handle subscribe form submission
+    document.addEventListener('DOMContentLoaded', () => {
+      const subscribeForm = document.querySelector('.subscribe-form');
+      if (subscribeForm) {
+        subscribeForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const formData = new FormData(subscribeForm);
+
+          try {
+            const response = await fetch('api/subscribe.php', {
+              method: 'POST',
+              body: formData
+            });
+
+            // Check if response is OK before parsing JSON
+            if (!response.ok) {
+              throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+            }
+
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+              const text = await response.text();
+              console.error('Non-JSON response:', text);
+              throw new Error('Server returned non-JSON response. Check console for details.');
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+              subscribeForm.innerHTML = `<p class="text-green-400">${result.message}</p>`;
+            } else {
+              alert('Error: ' + result.message);
+            }
+          } catch (error) {
+            console.error('Subscription error:', error);
+            alert('Error: ' + error.message);
+          }
+        });
+      }
+    });
+  </script>
+  </body>
+</html>

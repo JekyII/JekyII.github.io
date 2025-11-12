@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Automation and safety loops in solo projects — KACHAN</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#003f88",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1823",
+              accent: "#374151"
+            },
+            fontFamily: {
+              display: "Space Grotesk"
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px"
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+      }
+
+      #cyber-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -10;
+        background-color: #0a0e14;
+        display: block;
+        pointer-events: auto;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+
+        <main class="flex-1 bg-background-dark/30 backdrop-blur-sm" id="site-main-content">
+          <article class="max-w-3xl mx-auto px-6 py-20">
+            <a class="inline-flex items-center gap-2 text-gray-400 hover:text-primary transition-colors mb-8" href="../blog.html">
+              <span class="material-symbols-outlined text-sm">arrow_back</span>
+              <span>Back to Blog</span>
+            </a>
+
+            <header class="mb-12">
+              <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                Automation and safety loops in solo projects
+              </h1>
+              <div class="flex items-center gap-4 text-gray-400 text-sm">
+                <time datetime="2025-10-30">October 30, 2025</time>
+                <span>•</span>
+                <span>6 min read</span>
+              </div>
+            </header>
+
+            <div class="prose prose-invert max-w-none">
+              <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Today I leaned into my favorite combination: automating repetitive workflows while creating feedback loops that keep the experience safe, human, and trustworthy.
+              </p>
+
+              <h2 class="text-2xl font-bold text-white mt-12 mb-6">Why automation still needs guardrails</h2>
+              <p class="text-gray-300 mb-6">
+                Automation is the easiest part of a solo build. Guardrails are the hard part. After shipping the new contact flow on the portfolio, I added invisible checks to stop bots from abusing the form. It is a small piece of infrastructure, but it reinforces a mindset: move fast, but instrument for failure.
+              </p>
+              <p class="text-gray-300 mb-6">
+                The reCAPTCHA layer may not be glamorous, yet it informs every future feature. Every interaction should have:
+              </p>
+              <ul class="text-gray-300 space-y-4 mb-8">
+                <li><strong>Visibility.</strong> Logs or metrics that show when something goes sideways.</li>
+                <li><strong>Recovery.</strong> A path to disable or tweak the automation without ripping up core code.</li>
+                <li><strong>Delight.</strong> Even defensive layers can match the design language so the human on the other side feels welcomed.</li>
+              </ul>
+
+              <h2 class="text-2xl font-bold text-white mt-12 mb-6">Lessons from balancing experience and security</h2>
+              <p class="text-gray-300 mb-6">
+                Adding security often surfaces tension with UX. I kept coming back to three considerations:
+              </p>
+              <div class="bg-gray-800/10 border border-gray-700/50 rounded-lg p-6 mb-8 backdrop-blur-sm">
+                <ol class="space-y-4 text-gray-300 list-decimal list-inside">
+                  <li><strong>Match the vibe.</strong> Defensive UI should sit in the same visual system as the core product.</li>
+                  <li><strong>Minimize friction.</strong> Place the verification step exactly where commitment is highest so it feels natural.</li>
+                  <li><strong>Keep it observable.</strong> With a single source of truth, you notice breakages before a user does.</li>
+                </ol>
+              </div>
+
+              <p class="text-gray-300 mb-6">
+                The end result feels deceptively simple. It is just a form, but it lets me sleep at night knowing I will not wake up to spammy auto-responses or abusive requests.
+              </p>
+
+              <h2 class="text-2xl font-bold text-white mt-12 mb-6">What’s next</h2>
+              <p class="text-gray-300 mb-6">
+                Next, I want to connect the contact form to a lightweight automation that triages messages into themes. The idea is to extend the safety loop: observe, classify, respond. When you treat every small feature as a playground for resilience, the big features inherit that DNA automatically.
+              </p>
+
+              <p class="text-gray-300">
+                If you are testing defenses on your own projects, start with the simplest gate you can ship. Then add the analytics and aesthetic layers. The combination is what keeps users trusting the product while letting you ship faster.
+              </p>
+            </div>
+          </article>
+        </main>
+
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="../js/cyber-background.js"></script>
+    <script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+    <script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+  </body>
+</html>

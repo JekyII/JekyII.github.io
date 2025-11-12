@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KACHAN // SYSTEM ACCESS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <section class="hero-intro flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-[60vh] fade-in-section">
+            <div class="max-w-4xl mx-auto text-center">
+              <div class="flex flex-col gap-8 items-center justify-center p-4">
+                <div class="flex flex-col gap-4 text-center">
+                  <h1 class="text-white text-5xl md:text-7xl font-black tracking-tighter">KACHAN</h1>
+                  <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                    Breaking systems. Building better ones. <br/>
+                    <span class="text-primary">[ Cybersecurity • OSINT • Quantum Computing ]</span>
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-4 justify-center items-center">
+                  <a class="btn btn-primary btn-hover" href="#projects">
+                    View Projects
+                  </a>
+                  <a class="btn btn-accent btn-hover" href="#contact">
+                    Contact Me
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+            <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section" id="about-me">
+            <div class="max-w-4xl mx-auto">
+              <h2 class="text-4xl font-bold text-white mb-8 text-center">About Me</h2>
+              <div class="about-me-content">
+              <img src="assets/images/profile.png" alt="Portrait of KACHAN" class="about-me-image rounded-lg object-cover border-2 border-primary" loading="lazy" />
+              <p class="text-gray-400 text-lg mb-4">
+                My journey into cybersecurity began with a simple question: <strong>"How do systems break, and how can I make them stronger?"</strong> Starting with a foundation in <strong>Business Administration from CUHK</strong>, I discovered that the most powerful tools aren't just technical—they're the ones that understand human behavior and systemic vulnerabilities.
+              </p>
+              <p class="text-gray-400 text-lg mb-6">
+                Through <strong>automation and workflow optimization</strong>, I learned that every system has weaknesses. Whether scripting in <strong>Python</strong> or building integrations with <strong>Google Apps Script</strong>, I saw firsthand how small oversights could cascade into major security risks. This drove me to study <strong>cybersecurity at TalTech</strong>, where I'm mastering the art of breaking systems to build them better.
+              </p>
+              <p class="text-gray-400 text-lg mb-6">
+                Today, I specialize in <strong>Open Source Intelligence (OSINT)</strong> and <strong>quantum computing security</strong>. My projects explore the cutting edge of digital defense—from building comprehensive OSINT frameworks to simulating quantum-resistant encryption. I believe the future of security lies at the intersection of technology, psychology, and proactive defense.
+              </p>
+              <p class="text-gray-400 text-lg mb-6">
+                When I'm not coding or researching, you'll find me <strong>CTF competing</strong>, <strong>contributing to open-source security tools</strong>, or <strong>writing about the latest threats and defenses</strong>. Security isn't just my field—it's my mission to make the digital world safer, one system at a time.
+              </p>
+              <div class="clear-both"></div>
+              </div>
+            </div>
+            </section>
+
+          <section
+            class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section"
+            id="projects"
+            data-projects-target
+            data-projects-src="projects.html"
+            data-projects-selector="[data-projects-section]"
+          >
+            <div class="max-w-6xl mx-auto text-center">
+              <h2 class="text-4xl font-bold text-white mb-6">Loading Projects…</h2>
+              <p class="text-gray-400">Hang tight while we compile the latest builds.</p>
+            </div>
+          </section>
+
+          <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section" id="blog">
+            <div class="max-w-6xl mx-auto">
+              <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">Latest Writing</h2>
+                <p class="text-gray-400 text-lg">Fresh insights, shipped automatically as new posts land.</p>
+              </div>
+                <div data-blog-list data-blog-layout="list" data-blog-limit="5">
+                <p class="text-gray-500">Loading posts…</p>
+                </div>
+                <div class="text-center pt-40">
+                  <a class="btn btn-accent btn-hover" href="blog.html">Browse the Blog</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="py-20 px-4 sm:px-6 lg:px-8 scale-in"
+            id="contact"
+            data-contact-target
+            data-contact-src="contact.html"
+            data-contact-selector="[data-contact-section]"
+          >
+            <div class="max-w-lg mx-auto text-center">
+              <p class="text-gray-400">Loading contact form…</p>
+            </div>
+          </section>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="js/cyber-background.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/blog-list.js" defer></script>
+  <script src="js/contact-section.js" defer></script>
+  <script src="js/projects-preview.js" defer></script>
+    <script src="js/header.js" data-header-src="header.html" defer></script>
+    <script src="js/footer.js" data-footer-src="footer.html" defer></script>
+    
+<script>
+  // Security warning
+  alert('SECURITY NOTICE: This website is for educational and portfolio purposes only. Any attempt to perform malicious activities, unauthorized access, or exploitation will be logged and reported. Stay ethical, stay legal.');
+
+  // get visitor IP (uses a public service)
+  fetch('https://api.ipify.org?format=json')
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(data => {
+      const ip = data.ip || 'UNKNOWN';
+      const el = document.getElementById('ip');
+      if (el) el.textContent = ip;
+      // show updated alert including the fetched IP
+      alert(`⚠️ Your IP: ${ip}`);
+    })
+    .catch(() => {
+      const el = document.getElementById('ip');
+      if (el) el.textContent = 'UNKNOWN';
+      alert('⚠️ Your IP: UNKNOWN');
+    });
+
+  
+  
+  // Aggressive title cycling
+  const titles = [
+    'KACHAN // SYSTEM ACCESS',
+    'KACHAN >> INTRUSION DETECTED',
+    'KACHAN // BREACH IN PROGRESS',
+    'KACHAN >> FIREWALL BYPASSED',
+    'KACHAN // ACCESS GRANTED'
+  ];
+  let titleIndex = 0;
+  
+  setInterval(() => {
+    titleIndex = (titleIndex + 1) % titles.length;
+    document.title = titles[titleIndex];
+  }, 3000);
+  
+  // System load indicator in console
+  setInterval(() => {
+    const load = 85 + Math.floor(Math.random() * 15);
+    console.clear();
+    console.log(`%c[SYSTEM] Load: ${load}% | Status: OPERATIONAL | Uptime: ${Math.floor(Date.now() / 86400000)}d ${new Date().getHours()}h ${new Date().getMinutes()}m`, 'color: #00ff00; font-weight: bold; font-size: 12px;');
+  }, 5000);
+</script>
+  </body>
+</html>

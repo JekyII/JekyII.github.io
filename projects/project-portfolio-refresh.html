@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website Refresh — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <article class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="max-w-4xl mx-auto">
+              <header class="mb-12 text-center">
+                <p class="text-sm text-primary tracking-wider uppercase mb-4">Case Study</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Portfolio Website Refresh</h1>
+                <p class="text-gray-400 text-lg">
+                  Elevating my personal cybersecurity portfolio with immersive visuals, dynamic interactions, and a cohesive blog system.
+                </p>
+              </header>
+
+              <section class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-4">Overview</h2>
+                <p class="text-gray-400">
+                  The portfolio refresh project modernises my personal site with a cyberpunk-inspired aesthetic, animated matrix hover effects, and a revitalised content strategy. The work spans design, front-end engineering, and automation around blog content to keep the site current and engaging.
+                </p>
+              </section>
+
+              <section class="grid gap-6 md:grid-cols-2 mb-12">
+                <div>
+                  <h3 class="text-white font-bold mb-2">Role</h3>
+                  <p class="text-gray-400">Solo designer & developer</p>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-2">Timeline</h3>
+                  <p class="text-gray-400">Aug – Oct 2025</p>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-2">Tools</h3>
+                  <p class="text-gray-400">VS Code, Figma, Tailwind-inspired utility CSS, vanilla JS</p>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-2">Focus Areas</h3>
+                  <p class="text-gray-400">Experience design, performance, accessibility, automation</p>
+                </div>
+              </section>
+
+              <section class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-4">Goals</h2>
+                <ul class="text-gray-400 space-y-3">
+                  <li>• Craft a memorable first impression that aligns with security-focused storytelling.</li>
+                  <li>• Streamline header, footer, and contact UX for easier navigation and outreach.</li>
+                  <li>• Establish maintainable systems for blog posts, project pages, and animations.</li>
+                </ul>
+              </section>
+
+              <section class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-4">Implementation</h2>
+                <p class="text-gray-400 mb-4">
+                  I rebuilt the site with modular HTML partials for the header, footer, and contact form, then connected them through lightweight JavaScript loaders. The visual system leans on glassmorphism cards, gradient accents, and a custom matrix proximity effect that animates headings, navigation tabs, and body copy without impacting readability.
+                </p>
+                <p class="text-gray-400 mb-4">
+                  The blog leverages a JSON manifest to dynamically render cards and individual posts, while responsive CSS keeps typography and spacing consistent across breakpoints. Accessibility was considered throughout, from keyboard-friendly focus states to respecting reduced-motion preferences.
+                </p>
+                <p class="text-gray-400">
+                  Behind the scenes, I prepared automation hooks for future scripted blog image generation, and ensured integrations like reCAPTCHA can be themed and swapped easily once production keys are configured.
+                </p>
+              </section>
+
+              <section class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-4">Outcomes</h2>
+                <ul class="text-gray-400 space-y-3">
+                  <li>Cohesive visual identity anchored by neon-accented cyber motifs.</li>
+                  <li>Faster iteration by extracting reusable components and utilities.</li>
+                  <li>Improved engagement through interactive blog listings and project previews.</li>
+                  <li>Clear roadmap for future automation (blog images, contact workflows).</li>
+                </ul>
+              </section>
+
+              <section class="mb-20">
+                <h2 class="text-2xl font-bold text-white mb-4">Next Steps</h2>
+                <p class="text-gray-400">
+                  Remaining work includes plugging in the production reCAPTCHA key, extending the blog asset generator, and expanding the project catalogue with deeper technical breakdowns and metrics.
+                </p>
+              </section>
+
+              <div class="text-center">
+                <a href="../index.html" class="btn btn-accent btn-hover">Back to Portfolio</a>
+              </div>
+            </div>
+          </article>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+    <script src="../js/cyber-background.js"></script>
+    <script src="../js/animation.js"></script>
+    <script src="../js/header.js" data-header-src="../header.html" data-path-depth="1" defer></script>
+    <script src="../js/footer.js" data-footer-src="../footer.html" data-path-depth="1" defer></script>
+  </body>
+</html>

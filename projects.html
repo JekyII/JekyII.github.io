@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — KACHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="cyber-canvas"></canvas>
+    <div class="content-wrapper">
+      <div class="relative w-full flex flex-col min-h-screen">
+        <div id="global-header"></div>
+        <main class="flex-1">
+          <section class="py-20 px-4 sm:px-6 lg:px-8 fade-in-section" data-projects-section>
+            <div class="max-w-6xl mx-auto">
+              <h2 class="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card">
+                  <a href="projects/project-pyosint.html" class="project-card-link" aria-label="PyOSINT Toolkit">
+                    <div class="project-caption">
+                      <h4 class="text-lg font-bold">PyOSINT Toolkit</h4>
+                      <p class="text-gray-400 text-sm">Comprehensive Python-based OSINT framework with 50+ modules for reconnaissance, threat intelligence, and digital forensics.</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="project-card">
+                  <a href="projects/project-portfolio-refresh.html" class="project-card-link" aria-label="Portfolio Website Refresh">
+                    <div class="project-caption">
+                      <h4 class="text-lg font-bold">Portfolio Website Refresh</h4>
+                      <p class="text-gray-400 text-sm">Reimagining my cybersecurity portfolio with immersive visuals and dynamic interactions.</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="project-card">
+                  <a href="projects/project-quantum-simulator.html" class="project-card-link" aria-label="Quantum Computing Simulator">
+                    <div class="project-caption">
+                      <h4 class="text-lg font-bold">Quantum Computing Simulator</h4>
+                      <p class="text-gray-400 text-sm">Interactive Python simulator implementing quantum algorithms including Grover's search, Deutsch's algorithm, and Bell state entanglement.</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <div id="global-footer"></div>
+      </div>
+    </div>
+
+  <script src="js/cyber-background.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/header.js" data-header-src="header.html" data-path-depth="0" defer></script>
+  <script src="js/footer.js" data-footer-src="footer.html" data-path-depth="0" defer></script>
+  </body>
+</html>
